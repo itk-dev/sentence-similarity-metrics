@@ -51,7 +51,7 @@ jobs:
       - run: |
           docker network create frontend
           docker compose run --user root --rm phpfpm composer install
-          docker compose run --user root --rm phpfpm composer coding-standards-check/phpcs
+          docker compose run --user root --rm phpfpm composer coding-standards-check
 
   test-composer-install:
     runs-on: ubuntu-latest
