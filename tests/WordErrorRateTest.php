@@ -23,15 +23,15 @@ final class WordErrorRateTest extends TestCase
      *
      * @param string $reference
      *  Reference sentence
-     * @param string $hypothesis
-     *  Hypothesis sentence
+     * @param string $prediction
+     *  Prediction
      * @param float $wer
      *  Expected WER score
      */
     #[DataProvider('wordErrorRateDataProvider')]
-    public function testWordErrorRateCalculation(string $reference, string $hypothesis, float $wer): void
+    public function testWordErrorRateCalculation(string $reference, string $prediction, float $wer): void
     {
-        $this->compareFloats($wer, $this->wordErrorRate->wer($reference, $hypothesis));
+        $this->compareFloats($wer, $this->wordErrorRate->wer($reference, $prediction));
     }
 
     /**
@@ -64,8 +64,9 @@ final class WordErrorRateTest extends TestCase
         yield [
             // Reference
             'I am 32 years old and I am a software developer',
-            // Hypothesis/guess/prediction
+            // Prediction
             'I am a 32 year old and I am as a developer',
+            // WER score
             0.36363636363636,
         ];
 

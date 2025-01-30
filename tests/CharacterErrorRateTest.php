@@ -23,15 +23,15 @@ final class CharacterErrorRateTest extends TestCase
      *
      * @param string $reference
      *  Reference sentence
-     * @param string $hypothesis
-     *  Hypothesis sentence
+     * @param string $prediction
+     *  Prediction
      * @param float $cer
      *  Expected CER score
      */
     #[DataProvider('characterErrorRateDataProvider')]
-    public function testCharacterErrorRateCalculation(string $reference, string $hypothesis, float $cer): void
+    public function testCharacterErrorRateCalculation(string $reference, string $prediction, float $cer): void
     {
-        $this->compareFloats($cer, $this->characterErrorRate->cer($reference, $hypothesis));
+        $this->compareFloats($cer, $this->characterErrorRate->cer($reference, $prediction));
     }
 
     /**
@@ -64,8 +64,9 @@ final class CharacterErrorRateTest extends TestCase
         yield [
             // Reference
             'I am 32 years old and I am a software developer',
-            // Hypothesis/guess/prediction
+            // Prediction
             'I am a 32 year old and I am as a developer',
+            // CER score
             0.2127659574468085,
         ];
 
