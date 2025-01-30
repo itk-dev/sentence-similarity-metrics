@@ -6,6 +6,14 @@ class WordErrorRate
 {
     /**
      * Calculates word error rate (WER) between two sentences.
+     *
+     * @param string $reference
+     *   Reference sentence
+     * @param string $hypothesis
+     *   Hypothesis sentence
+     *
+     * @return float
+     *   The WER score
      */
     public function wer(string $reference, string $hypothesis): float
     {
@@ -21,7 +29,7 @@ class WordErrorRate
             array_fill(0, $hypothesisLength + 1, 0)
         );
 
-        // Initialize table for dynamic programming
+        // Initialize table for dynamic programming.
         for ($i = 0; $i <= $referenceLength; ++$i) {
             $dpTable[$i][0] = $i;
         }
@@ -30,7 +38,7 @@ class WordErrorRate
             $dpTable[0][$j] = $j;
         }
 
-        // Calculate WER using dynamic programming
+        // Calculate WER using dynamic programming.
         for ($i = 1; $i <= $referenceLength; ++$i) {
             for ($j = 1; $j <= $hypothesisLength; ++$j) {
                 $delete = $dpTable[$i - 1][$j] + 1;
@@ -41,7 +49,7 @@ class WordErrorRate
             }
         }
 
-        // WER is the minimal cost divided by the number of words in the reference
+        // WER is the minimal cost divided by the number of words in the reference.
         return $dpTable[$referenceLength][$hypothesisLength] / $referenceLength;
     }
 }

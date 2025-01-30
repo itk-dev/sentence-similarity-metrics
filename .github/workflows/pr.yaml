@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 2
 
       - name: Git fetch
-        run: git fetch
+        run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
 
       - name: Check that changelog has been updated.
         run: git diff --exit-code origin/${{ github.base_ref }} -- CHANGELOG.md && exit 1 || exit 0
@@ -58,7 +58,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.3' ]
+        php: [ '8.3', '8.4' ]
     name: Validate composer (${{ matrix.php}})
     steps:
       - uses: actions/checkout@v4
@@ -95,7 +95,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.3' ]
+        php: [ '8.3', '8.4' ]
     steps:
       - uses: actions/checkout@v4
 

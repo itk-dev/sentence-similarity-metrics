@@ -20,6 +20,13 @@ final class CharacterErrorRateTest extends TestCase
 
     /**
      * Tests character error rate calculations.
+     *
+     * @param string $reference
+     *  Reference sentence
+     * @param string $hypothesis
+     *  Hypothesis sentence
+     * @param float $cer
+     *  Expected CER score
      */
     #[DataProvider('characterErrorRateDataProvider')]
     public function testCharacterErrorRateCalculation(string $reference, string $hypothesis, float $cer): void
@@ -31,6 +38,11 @@ final class CharacterErrorRateTest extends TestCase
      * Compares floats.
      *
      * @see https://www.php.net/manual/en/language.types.float.php#language.types.float.comparison
+     *
+     * @param float $float1
+     *   Float value
+     * @param float $float2
+     *   Float value
      */
     private function compareFloats(float $float1, float $float2): void
     {
@@ -43,9 +55,9 @@ final class CharacterErrorRateTest extends TestCase
     /**
      * Data provider for character error rate calculation test.
      *
-     * Word error rates are calculated by
+     * Character error rates are calculated by
      *
-     * @see https://huggingface.co/spaces/evaluate-metric/wer.
+     * @see https://huggingface.co/spaces/evaluate-metric/cer.
      */
     public static function characterErrorRateDataProvider(): Generator
     {

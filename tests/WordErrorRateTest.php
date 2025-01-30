@@ -20,6 +20,13 @@ final class WordErrorRateTest extends TestCase
 
     /**
      * Tests word error rate calculations.
+     *
+     * @param string $reference
+     *  Reference sentence
+     * @param string $hypothesis
+     *  Hypothesis sentence
+     * @param float $wer
+     *  Expected WER score
      */
     #[DataProvider('wordErrorRateDataProvider')]
     public function testWordErrorRateCalculation(string $reference, string $hypothesis, float $wer): void
@@ -31,6 +38,11 @@ final class WordErrorRateTest extends TestCase
      * Compares floats.
      *
      * @see https://www.php.net/manual/en/language.types.float.php#language.types.float.comparison
+     *
+     * @param float $float1
+     *   Float value
+     * @param float $float2
+     *   Float value
      */
     private function compareFloats(float $float1, float $float2): void
     {

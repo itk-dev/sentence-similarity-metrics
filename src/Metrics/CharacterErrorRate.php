@@ -6,11 +6,20 @@ class CharacterErrorRate
 {
     /**
      * Calculates character error rate (CER) between two sentences.
+     *
+     * @param string $reference
+     *   Reference sentence
+     * @param string $hypothesis
+     *   Hypothesis sentence
+     *
+     * @return float
+     *   The CER score
      */
     public function cer(string $reference, string $hypothesis): float
     {
-        $referenceCharacters = mb_str_split($reference); // Split into characters
-        $hypothesisCharacters = mb_str_split($hypothesis); // Split into characters
+        // Split into characters.
+        $referenceCharacters = mb_str_split($reference);
+        $hypothesisCharacters = mb_str_split($hypothesis);
 
         $referenceLength = count($referenceCharacters);
         $hypothesisLength = count($hypothesisCharacters);
@@ -21,7 +30,7 @@ class CharacterErrorRate
             array_fill(0, $hypothesisLength + 1, 0)
         );
 
-        // Initialize table for dynamic programming
+        // Initialize table for dynamic programming.
         for ($i = 0; $i <= $referenceLength; ++$i) {
             $dpTable[$i][0] = $i;
         }
@@ -30,7 +39,7 @@ class CharacterErrorRate
             $dpTable[0][$j] = $j;
         }
 
-        // Calculate CER using dynamic programming
+        // Calculate CER using dynamic programming.
         for ($i = 1; $i <= $referenceLength; ++$i) {
             for ($j = 1; $j <= $hypothesisLength; ++$j) {
                 $delete = $dpTable[$i - 1][$j] + 1;
@@ -41,7 +50,7 @@ class CharacterErrorRate
             }
         }
 
-        // CER is the minimal cost divided by the number of characters in the reference
+        // CER is the minimal cost divided by the number of characters in the reference.
         return $dpTable[$referenceLength][$hypothesisLength] / $referenceLength;
     }
 }
