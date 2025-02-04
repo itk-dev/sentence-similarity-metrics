@@ -8,7 +8,10 @@ See [keep a changelog] for information about writing changes to this log.
 
 ## [Unreleased]
 
+## [0.1.0] 2025-02-04
+
 * Project startup
 
 [keep a changelog]: https://keepachangelog.com/en/1.1.0/
-[Unreleased]: https://github.com/itk-dev/sentence-similarity-metrics/compare/main...develop
+[Unreleased]: https://github.com/itk-dev/sentence-similarity-metrics/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/itk-dev/sentence-similarity-metrics/releases/tag/0.1.0
